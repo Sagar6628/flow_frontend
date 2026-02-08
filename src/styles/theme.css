@@ -1,0 +1,17 @@
+/* src/styles/theme.css */
+
+:root {
+  --text: #0b0b0f;
+  --background: #fbfbfe;
+  --primary: #4444bb;
+  --secondary: #8383e2;
+  --accent: #5555e7;
+}
+
+.dark {
+  --text: #f6f6f9;
+  --background: #010104;
+  --primary: #4444bb;
+  --secondary: #1d1d7c;
+  --accent: #1818aa;
+}
