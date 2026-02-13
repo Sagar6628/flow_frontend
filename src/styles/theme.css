@@ -2,16 +2,47 @@
 
 :root {
   --text: #0b0b0f;
-  --background: #fbfbfe;
+  --text-secondary:#f6f6f9;
+  --background: #F9F9F6;
   --primary: #4444bb;
   --secondary: #8383e2;
   --accent: #5555e7;
+   --accent-secondary:#0E1116;
+  --gradient-panel:
+    radial-gradient(
+      120% 120% at 20% 0%,
+      color-mix(in srgb, var(--primary) 20%, white 80%) 0%,
+      color-mix(in srgb, var(--primary) 35%, white 65%) 35%,
+      color-mix(in srgb, var(--secondary) 25%, white 75%) 60%,
+      var(--background) 100%
+    );
 }
 
 .dark {
   --text: #f6f6f9;
-  --background: #010104;
+  --text-secondary:#0b0b0f;
+  --background: #0E1116;
   --primary: #4444bb;
   --secondary: #1d1d7c;
   --accent: #1818aa;
+  --accent-secondary:#F9F9F6;
+    --gradient-panel:
+    radial-gradient(
+      120% 120% at 20% 0%,
+      color-mix(in srgb, var(--primary) 70%, white 30%) 0%,
+      var(--primary) 35%,
+      var(--secondary) 60%,
+      var(--background) 100%
+    );
+}
+ 
+@theme{
+  --color-text: var(--text);
+  --color-text-secondary: var(--text-secondary);
+  --color-background: var(--background);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-gradient-panel: var(--gradient-panel);
+  --color-accent-secondary: var(--accent-secondary);
 }
