@@ -115,7 +115,7 @@ export const Login = () => {
           </span>
           {tab === "login" ? (
             <>
-              <form onSubmit={(e) => {e.preventDefault(); onLogin();}} className="">
+              <form onSubmit={(e) => {e.preventDefault(); onLogin();}} className="grid grid-cols-1 gap-4">
                 <span>
                   <label htmlFor="email" className="text-text">
                     Email
@@ -156,7 +156,7 @@ export const Login = () => {
             </>
           ) : (
             <>
-              <form action="" className="">
+              <form action="" className="grid lg:grid-cols-2 gap-4">
                 <span>
                   <label htmlFor="firstName" className="text-text">
                     First Name
@@ -179,7 +179,7 @@ export const Login = () => {
                     className="block w-full mt-2 rounded-lg border-0 px-2 py-2 text-text shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:leading-6"
                   />
                 </span>
-                <span>
+                <span className="lg:col-span-2">
                   <label htmlFor="email" className="text-text">
                     Email
                   </label>
@@ -190,7 +190,7 @@ export const Login = () => {
                     className="block w-full mt-2 rounded-lg border-0 px-2 py-2 text-text shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:leading-6"
                   />
                 </span>
-                <span className="">
+                <span className="lg:col-span-2">
                   <label htmlFor="password" className="text-text">
                     Password
                   </label>
@@ -201,7 +201,7 @@ export const Login = () => {
                     className="block w-full mt-2 rounded-lg border-0 px-2 py-2 text-text shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:leading-6"
                   />
                 </span>
-                <button className="bg-accent-secondary text-text-secondary rounded-lg mt-4 py-2 w-full">
+                <button className="bg-accent-secondary text-text-secondary rounded-lg mt-4 py-2 w-full lg:col-span-2">
                   Sign Up
                 </button>
               </form>
