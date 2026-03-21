@@ -1,15 +1,30 @@
 // src/components/ShaderBackground.tsx
 import { ShaderGradient, ShaderGradientCanvas } from "@shadergradient/react";
 import { useTheme } from "../context/ThemeContext";
+import { useRef } from "react";
 
 export default function ShaderBackground() {
   const { theme } = useTheme();
+const shaderRef = useRef<any>(null);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!shaderRef.current) return;
+
+    const x = (e.clientX / window.innerWidth) * 2 - 1;
+    const y = (e.clientY / window.innerHeight) * 2 - 1;
+
+    shaderRef.current.uAmplitude = 3 + x * 1.5;
+    shaderRef.current.uDensity = 0.8 + y * 0.4;
+  };
   return (
-    <ShaderGradientCanvas
+   <div
+   className="absolute inset-0"
+      onMouseMove={handleMouseMove}
+   >
+     <ShaderGradientCanvas
     style={{
 //    backgroundColor: theme === "dark" ? "#0E1116" : "#F9F9F6", 
-backgroundColor: "transparent",
+    backgroundColor: "transparent",
     width: "100%",
     height: "100%",
     display: "flex",
@@ -18,17 +33,9 @@ backgroundColor: "transparent",
     overflow: "visible",
   }}
     >
-      {/* <ShaderGradient
-        animate="on"
-        brightness={1.1}
-        contrast={1.05}
-        grain="on"
-        color1={theme === "dark" ? "#4444bb" : "#8383e2"}
-        color2={theme === "dark" ? "#1d1d7c" : "#4444bb"}
-        color3={theme === "dark" ? "#010104" : "#fbfbfe"}
-      /> */}
 
       <ShaderGradient
+  ref={shaderRef}
   animate="on"
   axesHelper="on"
   bgColor1="#4444bb"
@@ -68,10 +75,12 @@ backgroundColor: "transparent",
   uFrequency={5.5}
   uSpeed={0.3}
   uStrength={0.3}
-  uTime={0}
+  // uTime={0}
+
   wireframe={false}
   zoomOut={true}
 />
     </ShaderGradientCanvas>
+   </div>
   );
 }

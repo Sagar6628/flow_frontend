@@ -4,7 +4,7 @@
   --text: #0b0b0f;
   --text-secondary:#f6f6f9;
   --background: #F9F9F6;
-  --primary: #4444bb;
+  --color-primary: #4444bb;
   --secondary: #8383e2;
   --accent: #5555e7;
    --accent-secondary:#0E1116;
@@ -22,7 +22,7 @@
   --text: #f6f6f9;
   --text-secondary:#0b0b0f;
   --background: #0E1116;
-  --primary: #4444bb;
+  --color-primary: #4444bb;
   --secondary: #1d1d7c;
   --accent: #1818aa;
   --accent-secondary:#F9F9F6;
@@ -37,12 +37,11 @@
 }
  
 @theme{
-  --color-text: var(--text);
-  --color-text-secondary: var(--text-secondary);
-  --color-background: var(--background);
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
-  --color-gradient-panel: var(--gradient-panel);
-  --color-accent-secondary: var(--accent-secondary);
+  --color-custom-text-secondary: var(--text-secondary);
+  --color-custom-background: var(--background);
+  --color-custom-primary: var(--color-primary);
+  --color-custom-secondary: var(--secondary);
+  --color-custom-accent: var(--accent);
+  --color-custom-gradient-panel: var(--gradient-panel);
+  --color-custom-accent-secondary: var(--accent-secondary);
 }
