@@ -3,6 +3,11 @@ import { useTheme } from "../context/ThemeContext";
 import ShaderBackground from "../styles/Gradientbackground";
 import dark from "../assets/Flow_Dark.png";
 import light from "../assets/Flow_Light.png";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../components/ui/tooltip";
+import { Button } from "../components/ui/button";
+import { Sun } from "lucide-react";
+import { login } from "../api/auth";
+import { useNavigate } from "react-router-dom";
 
 interface LoginProps {
   email: string;
@@ -15,7 +20,7 @@ export const Login = () => {
     email: "",
     password: "",
   });
-
+  const navigate = useNavigate();
   const handleLoginInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLoginFormData((prevData) => ({
@@ -24,8 +29,14 @@ export const Login = () => {
     }));
   };
 
-  const onLogin = () => {
-    console.log(loginFormData);
+  const onLogin = async() => {
+    console.log("logged",loginFormData);
+    
+    const response = await login(loginFormData.email, loginFormData.password); 
+    if (response) {
+      navigate("/home");
+    }
+
   };
   return (
     <div className="flex gap-4 items-center justify-center h-screen bg-background px-4">
@@ -44,12 +55,18 @@ export const Login = () => {
         </div>
       </div>
       <div className="h-[95%] w-[90%]  flex justify-center items-center">
-        <button
-          onClick={toggleTheme}
-          className="rounded-md absolute top-4 right-4 bg-primary px-3 py-2 text-text border"
-        >
-          Toggle theme
-        </button>
+       <div className="absolute right-5 top-5">
+        <Tooltip>
+            <TooltipTrigger asChild>
+                <Button variant="secondary" onClick={toggleTheme} className="flex items-center border rounded-full p-2 border-primary">
+                  <Sun className="text-primary" />
+                </Button>
+            </TooltipTrigger>
+            <TooltipContent side="bottom">
+                <p>Toggle Theme</p>
+            </TooltipContent>
+        </Tooltip>
+       </div>
         {/* {tab === "login" ? ( */}
         <div className=" w-1/2 ">
           <span className="flex flex-col items-center mb-15">
@@ -140,7 +157,7 @@ export const Login = () => {
                     className="block w-full mt-2 rounded-lg border-0 px-2 py-2 text-text shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:leading-6"
                   />
                 </span>
-                <button className="bg-primary w-full text-text-secondary rounded-lg mt-4 py-2">
+                <button className="bg-custom-primary w-full text-custom-text-secondary rounded-lg mt-4 py-2">
                   Login
                 </button>
               </form>
