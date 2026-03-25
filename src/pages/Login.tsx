@@ -8,6 +8,10 @@ import { Button } from "../components/ui/button";
 import { Sun } from "lucide-react";
 import { login } from "../api/auth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { Spinner } from "../components/ui/spinner";
+import { Field, FieldGroup, FieldLabel } from "../components/ui/field";
+import { Input } from "../components/ui/input";
 
 interface LoginProps {
   email: string;
@@ -16,6 +20,7 @@ interface LoginProps {
 export const Login = () => {
   const { toggleTheme, theme } = useTheme();
   const [tab, setTab] = useState<"login" | "signup">("login");
+  const [loading, setLoading] = useState(false);
   const [loginFormData, setLoginFormData] = useState<LoginProps>({
     email: "",
     password: "",
@@ -23,6 +28,10 @@ export const Login = () => {
   const navigate = useNavigate();
   const handleLoginInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+     console.log("TARGET 👉", e.target);
+  console.log("NAME 👉", e.target.name);
+  console.log("VALUE 👉", e.target.value);
+
     setLoginFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -31,11 +40,26 @@ export const Login = () => {
 
   const onLogin = async() => {
     console.log("logged",loginFormData);
-    
-    const response = await login(loginFormData.email, loginFormData.password); 
-    if (response) {
+    setLoading(true);
+     await login(loginFormData.email, loginFormData.password).then(res => {
       navigate("/home");
-    }
+      toast.success("Login Successful", {
+        description: "You have successfully logged in", 
+        duration: 3000,
+        position: "top-right",
+        closeButton: true,
+        cancel: true,
+      });
+     }).catch(err => {
+      toast.error("Login Failed", {
+        description: "Please check your credentials and try again", 
+        duration: 3000,
+        position: "top-right",
+      });
+     }).finally(() => {
+      setLoading(false);
+     });
+    
 
   };
   return (
@@ -45,6 +69,10 @@ export const Login = () => {
     rounded-3xl  items-center justify-center relative overflow-visible
    "
       >
+        <div className="absolute left-8 inline-flex flex-col bottom-13 z-10 text-accent-foreground ">
+          <h1 className="text-5xl font-bold ">Where teams get into flow.</h1>
+          <p className="text-shadow-accent-foreground">Create organizations, manage teams, and streamline work in one place.</p>
+        </div>
         <ShaderBackground />
         <div className="absolute top-0 left-0 w-32 h-12 inset-0 z-0">
           <img
@@ -133,7 +161,7 @@ export const Login = () => {
           {tab === "login" ? (
             <>
               <form onSubmit={(e) => {e.preventDefault(); onLogin();}} className="grid grid-cols-1 gap-4">
-                <span>
+                {/* <span>
                   <label htmlFor="email" className="text-text">
                     Email
                   </label>
@@ -156,10 +184,36 @@ export const Login = () => {
                     onChange={handleLoginInputChange}
                     className="block w-full mt-2 rounded-lg border-0 px-2 py-2 text-text shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:leading-6"
                   />
-                </span>
-                <button className="bg-custom-primary w-full text-custom-text-secondary rounded-lg mt-4 py-2">
+                </span> */}
+                {/* <button className="bg-custom-primary w-full text-custom-text-secondary rounded-lg mt-4 py-2">
                   Login
-                </button>
+                </button> */}
+                <FieldGroup>
+                  <Field>
+                    <FieldLabel htmlFor="email">Email/Username</FieldLabel>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="Enter your email or username"
+                      onChange={handleLoginInputChange}
+                    />
+                  </Field>
+                  <Field>
+                    <FieldLabel htmlFor="password">Password</FieldLabel>
+                    <Input
+                      id="password"
+                      name="password"
+                      type="password"
+                      placeholder="Enter your password"
+                      onChange={handleLoginInputChange}
+                    />
+                  </Field>
+                </FieldGroup>
+                <Button disabled={loading} type="submit">
+                  {loading && <Spinner />}
+                  {loading ? "Logging in..." : "Login"}
+                </Button>
               </form>
               <span className="text-text flex justify-center items-center gap-1 w-full mt-5">
                 <p className="text-sm">Dont have an account? </p>

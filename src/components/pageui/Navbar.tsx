@@ -1,15 +1,15 @@
 import { useTheme } from "../../context/ThemeContext";
 import dark from "../../assets/Flow_Dark.png";
 import light from "../../assets/Flow_Light.png";
-import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Bell, Search, Sun } from "lucide-react";
-import { Button } from "./button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
+import { Button } from "../ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 export const Navbar = () => {
   const { theme,toggleTheme } = useTheme();
   return (
-    <nav className="h-[10vh] flex items-center justify-between">
+    <nav className="h-[7vh] flex items-center justify-between p-2">
       <div className=" top-0 left-0 w-32 h-12 inset-0 z-0">
         <img
           src={theme === "dark" ? dark : light}

@@ -10,8 +10,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-<<<<<<< Updated upstream
-=======
 @import "tw-animate-css";
 
 @import "shadcn/tailwind.css";
@@ -20,7 +18,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
->>>>>>> Stashed changes
 
 :root {
     --background: oklch(1 0 0);
