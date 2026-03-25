@@ -1,7 +1,7 @@
 
-import { Button } from "./button"
+import { Button } from "../ui/button"
 import {CircleQuestionMark, Home, List, LogOut, Rows2, Users} from "lucide-react"
-import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { handleLogout } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 export const Sidebar = () => {
@@ -45,7 +45,7 @@ export const Sidebar = () => {
     ];
     return (
         <aside className=" flex w-full flex-col justify-between py-3 items-start px-4 min-h-full">
-            <div className="w-2/3 h-72 bg-primary flex flex-col items-center p-2 rounded-4xl justify-evenly gap-3">
+            <div className="w-3/3 h-72 bg-primary flex flex-col items-center p-2 rounded-4xl justify-evenly gap-3">
                 {items.map((item) => (
                     // <Tooltip key={item.name}>
                         // <Button variant="secondary" size="lg" className=" rounded-full px-3 py-5 ">
@@ -64,7 +64,7 @@ export const Sidebar = () => {
                     </Tooltip>
                 ))}
             </div>
-            <div className="w-2/3 h-32 bg-custom-primary flex flex-col items-center p-2 rounded-4xl justify-evenly gap-3">
+            <div className="w-3/3 h-32 bg-custom-primary flex flex-col items-center p-2 rounded-4xl justify-evenly gap-3">
                 {items2.map((item) => (
                   <Tooltip key={item.name} >
                         <TooltipTrigger asChild>
