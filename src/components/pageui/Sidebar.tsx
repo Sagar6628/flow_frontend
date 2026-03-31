@@ -1,6 +1,6 @@
 
 import { Button } from "../ui/button"
-import {CircleQuestionMark, Home, List, LogOut, Rows2, Users} from "lucide-react"
+import { Building2, CircleQuestionMark, Home, List, LogOut, Rows2, Users} from "lucide-react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { handleLogout } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,11 @@ export const Sidebar = () => {
             name: "Home",
             icon: <Home />,
             link: "/home"
+        },
+        {
+            name: "Organisations",
+            icon: <Building2 />,
+            link: "/organisations"
         },
         {
             name: "Projects",
@@ -45,7 +50,7 @@ export const Sidebar = () => {
     ];
     return (
         <aside className=" flex w-full flex-col justify-between py-3 items-start px-4 min-h-full">
-            <div className="w-3/3 h-72 bg-primary flex flex-col items-center p-2 rounded-4xl justify-evenly gap-3">
+            <div className="w-3/3 py-5 bg-primary flex flex-col items-center p-2 rounded-4xl justify-evenly gap-3">
                 {items.map((item) => (
                     // <Tooltip key={item.name}>
                         // <Button variant="secondary" size="lg" className=" rounded-full px-3 py-5 ">

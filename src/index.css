@@ -130,6 +130,9 @@
     --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+body{
+   font-style: var(--font-sans)
+}
 @layer base {
   * {
     @apply border-border outline-ring/50;
