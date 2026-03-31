@@ -5,6 +5,8 @@ import { ProtectedRoutes } from './util/ProtectedRoutes'
 import { isAuthenticated } from './api/auth'
 import { Project } from './pages/project/Project'
 import { Teams } from './pages/team/Teams'
+import { Organisations } from './pages/organisation/Organisations'
+import { CreateOrganisation } from './pages/organisation/CreateOrganisation'
 
 function App() {
     
@@ -23,6 +25,8 @@ return (
                     <Route path="/home" element={<h1>Home</h1>} />
                     <Route path="/project" element={<Project />} />
                     <Route path="/teams" element={<Teams/>} />
+                    <Route path="/organisations" element={<Organisations/>} />
+                    <Route path='/organisation/create' element={<CreateOrganisation/>} />
                 </Route>
            </Route>
         </Routes>

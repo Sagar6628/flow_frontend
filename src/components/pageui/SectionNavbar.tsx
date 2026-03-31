@@ -1,6 +1,7 @@
 import { ArrowLeft, PlusCircle } from "lucide-react"
 import { Button } from "../ui/button"
 import type React from "react"
+import { useNavigate } from "react-router-dom"
 
 interface SectionNavbarProps {
     title:string,
@@ -12,10 +13,11 @@ interface SectionNavbarProps {
     createButtonText?: string
 }
 export const SectionNavbar :React.FC<SectionNavbarProps> = ({title, description, children, onBack, onCreate, titleIcon, createButtonText}) => {
+    const goBack = useNavigate();
     return (
 
-        <div className="w-full flex ">
-            <Button variant="default" size="icon-lg" className="rounded-full mr-3 " onClick={onBack}>
+        <div className="w-full flex p-3">
+            <Button variant="default" size="icon-lg" className="rounded-full mr-3 " onClick={()=>{goBack(-1)}}>
                 <ArrowLeft  className="" />
             </Button>
             <div className="">
@@ -25,14 +27,18 @@ export const SectionNavbar :React.FC<SectionNavbarProps> = ({title, description,
                 </div>
                 <p className="text-sm text-muted-foreground">{description}</p>
              </div> 
-                {
-                    children? children:(
-                        <Button variant="default" size="default" className="ml-auto  " onClick={onCreate}>
-                            <PlusCircle/>
-                            {createButtonText}
-                        </Button>
-                    )
-                }
+             {
+                children&&children                
+             }
+             {
+                createButtonText&&(
+                    <Button variant="default" size="default" className="ml-auto cursor-pointer  " onClick={onCreate}>
+                        <PlusCircle/>
+                        {createButtonText}
+                    </Button>
+                )
+             }
+            
         </div>
     )
 }
